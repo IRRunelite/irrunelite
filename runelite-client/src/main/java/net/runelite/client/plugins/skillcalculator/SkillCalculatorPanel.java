@@ -30,6 +30,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+<<<<<<< HEAD
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -37,6 +38,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+=======
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+>>>>>>> upstream/master
 import javax.swing.border.EmptyBorder;
 import net.runelite.api.Client;
 import net.runelite.client.game.SkillIconManager;
@@ -51,13 +57,17 @@ class SkillCalculatorPanel extends PluginPanel
 	private final SkillIconManager iconManager;
 	private final MaterialTabGroup tabGroup;
 
+<<<<<<< HEAD
 	private final MouseListener tabHoverListener;
 
+=======
+>>>>>>> upstream/master
 	SkillCalculatorPanel(SkillIconManager iconManager, Client client)
 	{
 		super();
 		getScrollPane().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+<<<<<<< HEAD
 		tabHoverListener = new MouseAdapter()
 		{
 			@Override
@@ -75,6 +85,8 @@ class SkillCalculatorPanel extends PluginPanel
 			}
 		};
 
+=======
+>>>>>>> upstream/master
 		this.iconManager = iconManager;
 
 		setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -118,6 +130,7 @@ class SkillCalculatorPanel extends PluginPanel
 	{
 		for (CalculatorType calculatorType : CalculatorType.values())
 		{
+<<<<<<< HEAD
 			MaterialTab tab = new MaterialTab("", tabGroup, null);
 			tab.setOpaque(true);
 			tab.setVerticalAlignment(SwingConstants.CENTER);
@@ -127,6 +140,11 @@ class SkillCalculatorPanel extends PluginPanel
 			tab.setOnSelectEvent(() -> uiCalculator.openCalculator(calculatorType));
 			tab.addMouseListener(tabHoverListener);
 
+=======
+			ImageIcon icon = new ImageIcon(iconManager.getSkillImage(calculatorType.getSkill(), true));
+			MaterialTab tab = new MaterialTab(icon, tabGroup, null);
+			tab.setOnSelectEvent(() -> uiCalculator.openCalculator(calculatorType));
+>>>>>>> upstream/master
 			tabGroup.addTab(tab);
 		}
 	}

@@ -27,9 +27,12 @@
 package net.runelite.client.plugins.grandexchange;
 
 import java.awt.BorderLayout;
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+=======
+>>>>>>> upstream/master
 import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
 import javax.swing.JPanel;
@@ -75,6 +78,7 @@ class GrandExchangePanel extends PluginPanel
 		MaterialTab offersTab = new MaterialTab("Offers", tabGroup, offersPanel);
 		searchTab = new MaterialTab("Search", tabGroup, searchPanel);
 
+<<<<<<< HEAD
 		MouseAdapter materialTabMouseAdapter = new MouseAdapter()
 		{
 			@Override
@@ -98,6 +102,8 @@ class GrandExchangePanel extends PluginPanel
 		searchTab.addMouseListener(materialTabMouseAdapter);
 		offersTab.addMouseListener(materialTabMouseAdapter);
 
+=======
+>>>>>>> upstream/master
 		tabGroup.setBorder(new EmptyBorder(5, 0, 0, 0));
 		tabGroup.addTab(offersTab);
 		tabGroup.addTab(searchTab);

@@ -41,7 +41,12 @@ public class RuneLiteProperties
 	private static final String RUNESCAPE_VERSION = "runescape.version";
 	private static final String DISCORD_APP_ID = "runelite.discord.appid";
 	private static final String DISCORD_INVITE = "runelite.discord.invite";
+<<<<<<< HEAD
 	private static final String FORUMS_LINK = "runelite.forums.link";
+=======
+	private static final String GITHUB_LINK = "runelite.github.link";
+	private static final String PATREON_LINK = "runelite.patreon.link";
+>>>>>>> upstream/master
 
 	private final Properties properties = new Properties();
 
@@ -84,8 +89,19 @@ public class RuneLiteProperties
 		return properties.getProperty(DISCORD_INVITE);
 	}
 
+<<<<<<< HEAD
 	public String getForumsLink()
 	{
 		return properties.getProperty(FORUMS_LINK);
+=======
+	public String getGithubLink()
+	{
+		return properties.getProperty(GITHUB_LINK);
+	}
+
+	public String getPatreonLink()
+	{
+		return properties.getProperty(PATREON_LINK);
+>>>>>>> upstream/master
 	}
 }

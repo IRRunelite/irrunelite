@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+runelite.version=${project.version}
+=======
+runelite.version=${project.version}
+>>>>>>> upstream/master
+rs.version=${rs.version}
