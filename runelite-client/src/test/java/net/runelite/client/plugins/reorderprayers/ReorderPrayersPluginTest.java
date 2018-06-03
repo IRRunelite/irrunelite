@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,54 +22,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.reorderprayers;
 
-/**
- * Represents a non-player character in the game.
- */
-public interface NPC extends Actor
+import net.runelite.api.Prayer;
+import static net.runelite.api.Prayer.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class ReorderPrayersPluginTest
 {
-	/**
-	 * Gets the ID of the NPC.
-	 *
-	 * @return the ID of the NPC
-	 * @see NpcID
-	 */
-	int getId();
+	private static final Prayer[] PRAYER_ORDER = new Prayer[]{
+		THICK_SKIN,
+		BURST_OF_STRENGTH,
+		CLARITY_OF_THOUGHT,
+		SHARP_EYE,
+		MYSTIC_WILL,
+		ROCK_SKIN,
+		SUPERHUMAN_STRENGTH,
+		IMPROVED_REFLEXES,
+		RAPID_RESTORE,
+		RAPID_HEAL,
+		PROTECT_ITEM,
+		HAWK_EYE,
+		MYSTIC_LORE,
+		STEEL_SKIN,
+		ULTIMATE_STRENGTH,
+		INCREDIBLE_REFLEXES,
+		PROTECT_FROM_MAGIC,
+		PROTECT_FROM_MISSILES,
+		PROTECT_FROM_MELEE,
+		EAGLE_EYE,
+		MYSTIC_MIGHT,
+		RETRIBUTION,
+		REDEMPTION,
+		SMITE,
+		CHIVALRY,
+		PIETY,
+		PRESERVE,
+		RIGOUR,
+		AUGURY
+	};
 
-	@Override
-	String getName();
-
-	@Override
-	int getCombatLevel();
-
-	/**
-	 * Gets the index position of this NPC in the clients cached
-	 * NPC array.
-	 *
-	 * @return the NPC index
-	 * @see Client#getCachedNPCs()
-	 */
-	int getIndex();
-
-	/**
-	 * Gets the composition of this NPC.
-	 *
-	 * @return the composition
-	 */
-	NPCComposition getComposition();
-
-	/**
-	 * Get the composition for this NPC and transform it if required
-	 *
-	 * @return the transformed NPC
-	 */
-	NPCComposition getTransformedComposition();
-
-	/**
-	 * Returns true if this NPC has died
-	 *
-	 * @return
-	 */
-	boolean isDead();
+	@Test
+	public void testPrayerOrder()
+	{
+		// the reorder prayers plugin depends on the Prayer enum order
+		assertArrayEquals(Prayer.values(), PRAYER_ORDER);
+	}
 }

@@ -95,7 +95,6 @@ public class WidgetID
 	public static final int KINGDOM_GROUP_ID = 392;
 	public static final int BARROWS_GROUP_ID = 24;
 	public static final int WILDERNESS_GROUP_ID = 90;
-
 	static class WorldMap
 	{
 		static final int OPTION = 36;
@@ -497,10 +496,9 @@ public class WidgetID
 		static final int BARROWS_POTENTIAL = 9;
 		static final int BARROWS_REWARD_INVENTORY = 3;
 	}
-
 	static class Wilderness
 	{
-		static final int WILDERNESS_CONTAINER = 41;
-		static final int WILDERNESS_LEVEL = 46;
-	}
+			static final int WILDERNESS_CONTAINER = 41;
+			static final int WILDERNESS_LEVEL = 46;
+		}
 }

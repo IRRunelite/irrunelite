@@ -84,8 +84,5 @@ public class RuneLiteProperties
 		return properties.getProperty(DISCORD_INVITE);
 	}
 
-	public String getForumsLink()
-	{
-		return properties.getProperty(FORUMS_LINK);
-	}
+	public String getForumsLink() { return properties.getProperty(FORUMS_LINK); }
 }

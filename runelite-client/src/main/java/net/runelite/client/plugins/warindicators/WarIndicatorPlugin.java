@@ -55,102 +55,102 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.Overlay;
 
 @PluginDescriptor(
-	name = "War Indicators"
+        name = "War Indicators"
 )
 
 public class WarIndicatorPlugin extends Plugin
 {
-	@Inject
-	private WarIndicatorConfig config;
+    @Inject
+    private WarIndicatorConfig config;
 
-	@Inject
-	private WarIndicatorOverlay warIndicatorOverlay;
+    @Inject
+    private WarIndicatorOverlay warIndicatorOverlay;
 
-	@Inject
-	private WarIndicatorMiniMapOverlay warIndicatorMinimapOverlay;
+    @Inject
+    private WarIndicatorMiniMapOverlay warIndicatorMinimapOverlay;
 
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Provides
-	WarIndicatorConfig provideConfig(ConfigManager configManager)
-	{
-		return configManager.getConfig(WarIndicatorConfig.class);
-	}
+    @Provides
+    WarIndicatorConfig provideConfig(ConfigManager configManager)
+    {
+        return configManager.getConfig(WarIndicatorConfig.class);
+    }
 
-	@Override
-	public Collection<Overlay> getOverlays()
-	{
-		return Sets.newHashSet(warIndicatorOverlay, warIndicatorMinimapOverlay);
-	}
+    @Override
+    public Collection<Overlay> getOverlays()
+    {
+        return Sets.newHashSet(warIndicatorOverlay, warIndicatorMinimapOverlay);
+    }
 
-	@Subscribe
-	public void onMenuEntryAdd(MenuEntryAdded menuEntryAdded)
-	{
-		int type = menuEntryAdded.getType();
+    @Subscribe
+    public void onMenuEntryAdd(MenuEntryAdded menuEntryAdded)
+    {
+        int type = menuEntryAdded.getType();
 
-		if (type >= 2000)
-		{
-			type -= 2000;
-		}
+        if (type >= 2000)
+        {
+            type -= 2000;
+        }
 
-		int identifier = menuEntryAdded.getIdentifier();
-		if (type == FOLLOW.getId() || type == TRADE.getId()
-			|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
-			|| type == PLAYER_FIRST_OPTION.getId()
-			|| type == PLAYER_SECOND_OPTION.getId()
-			|| type == PLAYER_THIRD_OPTION.getId()
-			|| type == PLAYER_FOURTH_OPTION.getId()
-			|| type == PLAYER_FIFTH_OPTION.getId()
-			|| type == PLAYER_SIXTH_OPTION.getId()
-			|| type == PLAYER_SEVENTH_OPTION.getId()
-			|| type == PLAYER_EIGTH_OPTION.getId())
-		{
-			Player[] players = client.getCachedPlayers();
-			Player player = null;
-			String player2 = null;
+        int identifier = menuEntryAdded.getIdentifier();
+        if (type == FOLLOW.getId() || type == TRADE.getId()
+                || type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
+                || type == PLAYER_FIRST_OPTION.getId()
+                || type == PLAYER_SECOND_OPTION.getId()
+                || type == PLAYER_THIRD_OPTION.getId()
+                || type == PLAYER_FOURTH_OPTION.getId()
+                || type == PLAYER_FIFTH_OPTION.getId()
+                || type == PLAYER_SIXTH_OPTION.getId()
+                || type == PLAYER_SEVENTH_OPTION.getId()
+                || type == PLAYER_EIGTH_OPTION.getId())
+        {
+            Player[] players = client.getCachedPlayers();
+            Player player = null;
+            String player2 = null;
 
-			String[] callers = config.getActiveCallers().split(", ");
-			String[] targets = config.getTargetedSnipes().split(", ");
+            String[] callers = config.getActiveCallers().split(", ");
+            String[] targets = config.getTargetedSnipes().split(", ");
 
-			if (identifier >= 0 && identifier < players.length)
-			{
-				player = players[identifier];
-				player2 = players[identifier].getName();
-			}
+            if (identifier >= 0 && identifier < players.length)
+            {
+                player = players[identifier];
+                player2 = players[identifier].getName();
+            }
 
-			if (player == null)
-			{
-				return;
-			}
+            if (player == null)
+            {
+                return;
+            }
 
-			Color color = null;
+            Color color = null;
 
-			if (config.highLightCallers() && ArrayUtils.contains(callers, player2))
-			{
-				color = config.getCallerColor();
-			}
+            if (config.highLightCallers() && ArrayUtils.contains(callers, player2))
+            {
+                color = config.getCallerColor();
+            }
 
-			if (config.highlightSnipes() && ArrayUtils.contains(targets, player2))
-			{
-				color = config.getSnipeColor();
-			}
+            if (config.highlightSnipes() && ArrayUtils.contains(targets, player2))
+            {
+                color = config.getSnipeColor();
+            }
 
-			if (color != null)
-			{
-				MenuEntry[] menuEntries = client.getMenuEntries();
-				MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
-				String target = lastEntry.getTarget();
+            if (color != null)
+            {
+                MenuEntry[] menuEntries = client.getMenuEntries();
+                MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
+                String target = lastEntry.getTarget();
 
-				// strip out existing <col...
-				int idx = target.indexOf('>');
-				if (idx != -1)
-				{
-					target = target.substring(idx + 1);
-				}
-				lastEntry.setTarget("<col=" + Integer.toHexString(color.getRGB() & 0xFFFFFF) + ">" + target);
-				client.setMenuEntries(menuEntries);
-			}
-		}
-	}
+                // strip out existing <col...
+                int idx = target.indexOf('>');
+                if (idx != -1)
+                {
+                    target = target.substring(idx + 1);
+                }
+                lastEntry.setTarget("<col=" + Integer.toHexString(color.getRGB() & 0xFFFFFF) + ">" + target);
+                client.setMenuEntries(menuEntries);
+            }
+        }
+    }
 }

@@ -39,79 +39,79 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 @Slf4j
 public class CombatOverlay extends Overlay
 {
-	private static final Color TEXT_COLOR_BACKGROUND = new Color(0, 0, 0);
-	private static final Color TEXT_COLOR_FRONT = new Color(255, 255, 0);
-	private static final int TEXT_OFFSET = 10;
-	private static final int FIXED_VIEWPORT_OFFSET_X = 4;
-	private static final int FIXED_VIEWPORT_OFFSET_Y = 4;
+    private static final Color TEXT_COLOR_BACKGROUND = new Color(0, 0, 0);
+    private static final Color TEXT_COLOR_FRONT = new Color(255, 255, 0);
+    private static final int TEXT_OFFSET = 10;
+    private static final int FIXED_VIEWPORT_OFFSET_X = 4;
+    private static final int FIXED_VIEWPORT_OFFSET_Y = 4;
 
-	private Client client;
+    private Client client;
 
-	private CombatConfig config;
+    private CombatConfig config;
 
-	private CombatPlugin plugin;
+    private CombatPlugin plugin;
 
-	@Inject
-	CombatOverlay(Client client, CombatConfig config, CombatPlugin plugin)
-	{
-		setPosition(OverlayPosition.DYNAMIC);
-		this.client = client;
-		this.config = config;
-		this.plugin = plugin;
-	}
+    @Inject
+    CombatOverlay(Client client, CombatConfig config, CombatPlugin plugin)
+    {
+        setPosition(OverlayPosition.DYNAMIC);
+        this.client = client;
+        this.config = config;
+        this.plugin = plugin;
+    }
 
-	@Override
-	public Dimension render(Graphics2D graphics)
-	{
-		if (!isWidgetVisible(client.getWidget(WidgetInfo.WILDERNESS_CONTAINER))
-				|| plugin.isExcludedWorld()
-				|| !config.showCombatRange())
-		{
-			return null;
-		}
+    @Override
+    public Dimension render(Graphics2D graphics)
+    {
+        if (!isWidgetVisible(client.getWidget(WidgetInfo.WILDERNESS_CONTAINER))
+                || plugin.isExcludedWorld()
+                || !config.showCombatRange())
+        {
+            return null;
+        }
 
-		Widget wildernessWidget = client.getWidget(WidgetInfo.WILDERNESS_CONTAINER);
+        Widget wildernessWidget = client.getWidget(WidgetInfo.WILDERNESS_CONTAINER);
 
-		int centerX = wildernessWidget.getRelativeX() + wildernessWidget.getWidth() / 2;
-		int centerY = wildernessWidget.getRelativeY() + wildernessWidget.getHeight() + TEXT_OFFSET;
+        int centerX = wildernessWidget.getRelativeX() + wildernessWidget.getWidth() / 2;
+        int centerY = wildernessWidget.getRelativeY() + wildernessWidget.getHeight() + TEXT_OFFSET;
 
-		if (isWidgetVisible(client.getWidget(WidgetInfo.FIXED_VIEWPORT)))
-		{
-			centerX += FIXED_VIEWPORT_OFFSET_X;
-			centerY += FIXED_VIEWPORT_OFFSET_Y;
-		}
+        if (isWidgetVisible(client.getWidget(WidgetInfo.FIXED_VIEWPORT)))
+        {
+            centerX += FIXED_VIEWPORT_OFFSET_X;
+            centerY += FIXED_VIEWPORT_OFFSET_Y;
+        }
 
-		Widget textWidget = client.getWidget(WidgetInfo.WILDERNESS_LEVEL);
-		textWidget.setTextColor(getDecimalColor(TEXT_COLOR_FRONT));
+        Widget textWidget = client.getWidget(WidgetInfo.WILDERNESS_LEVEL);
+        textWidget.setTextColor(getDecimalColor(TEXT_COLOR_FRONT));
 
-		String bracketText = getCombatRange(client.getWidget(WidgetInfo.WILDERNESS_LEVEL).getText());
-		int offsetX = graphics.getFontMetrics().stringWidth(bracketText) / 2;
+        String bracketText = getCombatRange(client.getWidget(WidgetInfo.WILDERNESS_LEVEL).getText());
+        int offsetX = graphics.getFontMetrics().stringWidth(bracketText) / 2;
 
-		graphics.setColor(TEXT_COLOR_BACKGROUND);
-		graphics.drawString(bracketText, centerX - offsetX + 1, centerY + 1);
+        graphics.setColor(TEXT_COLOR_BACKGROUND);
+        graphics.drawString(bracketText, centerX - offsetX + 1, centerY + 1);
 
-		graphics.setColor(TEXT_COLOR_FRONT);
-		graphics.drawString(bracketText, centerX - offsetX, centerY);
+        graphics.setColor(TEXT_COLOR_FRONT);
+        graphics.drawString(bracketText, centerX - offsetX, centerY);
 
-		return null;
-	}
+        return null;
+    }
 
-	private String getCombatRange(String text)
-	{
-		int wildernessLevel = Integer.valueOf(text.replace("Level: ", ""));
-		int combat = client.getLocalPlayer().getCombatLevel();
-		int minimum = (combat - wildernessLevel) <= 3 ? 3 : combat - wildernessLevel;
-		int maximum = (combat + wildernessLevel) >= 126 ? 126 : combat + wildernessLevel;
-		return minimum + "-" + maximum;
-	}
+    private String getCombatRange(String text)
+    {
+        int wildernessLevel = Integer.valueOf(text.replace("Level: ", ""));
+        int combat = client.getLocalPlayer().getCombatLevel();
+        int minimum = (combat - wildernessLevel) <= 3 ? 3 : combat - wildernessLevel;
+        int maximum = (combat + wildernessLevel) >= 126 ? 126 : combat + wildernessLevel;
+        return minimum + "-" + maximum;
+    }
 
-	private int getDecimalColor(Color color)
-	{
-		return (color.getRed() << 16) + (color.getGreen() << 8) + color.getBlue();
-	}
+    private int getDecimalColor(Color color)
+    {
+        return (color.getRed() << 16) + (color.getGreen() << 8) + color.getBlue();
+    }
 
-	private boolean isWidgetVisible(Widget widget)
-	{
-		return widget != null && !widget.isHidden();
-	}
+    private boolean isWidgetVisible(Widget widget)
+    {
+        return widget != null && !widget.isHidden();
+    }
 }

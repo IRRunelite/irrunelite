@@ -65,8 +65,8 @@ public class InfoPanel extends PluginPanel
 	private static final String RUNELITE_LOGIN = "https://runelite_login/";
 
 	private static final ImageIcon ARROW_RIGHT_ICON;
-	private static final ImageIcon FORUMS_ICON;
 	private static final ImageIcon DISCORD_ICON;
+	private static final ImageIcon FORUMS_ICON;
 
 	private final JLabel loggedLabel = new JLabel();
 	private final JRichTextPane emailLabel = new JRichTextPane();
@@ -94,8 +94,8 @@ public class InfoPanel extends PluginPanel
 			synchronized (ImageIO.class)
 			{
 				ARROW_RIGHT_ICON = new ImageIcon(ImageIO.read(InfoPanel.class.getResourceAsStream("arrow_right.png")));
-				FORUMS_ICON = new ImageIcon(ImageIO.read(InfoPanel.class.getResourceAsStream("forums_icon.png")));
 				DISCORD_ICON = new ImageIcon(ImageIO.read(InfoPanel.class.getResourceAsStream("discord_icon.png")));
+				FORUMS_ICON = new ImageIcon(ImageIO.read(InfoPanel.class.getResourceAsStream("forums_icon.png")));
 			}
 		}
 		catch (IOException e)
@@ -117,7 +117,7 @@ public class InfoPanel extends PluginPanel
 
 		final Font smallFont = FontManager.getRunescapeSmallFont();
 
-		JLabel version = new JLabel(htmlLabel("Client Version: ", runeLiteProperties.getVersion()));
+		JLabel version = new JLabel(htmlLabel("Client version: ", runeLiteProperties.getVersion()));
 		version.setFont(smallFont);
 
 		JLabel revision = new JLabel();
@@ -129,7 +129,7 @@ public class InfoPanel extends PluginPanel
 			engineVer = String.format("Rev %s", runeLiteProperties.getRunescapeVersion());
 		}
 
-		revision.setText(htmlLabel("OSRS Revision: ", engineVer));
+		revision.setText(htmlLabel("Oldschool revision: ", engineVer));
 
 		loggedLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
 		loggedLabel.setFont(smallFont);
@@ -162,6 +162,7 @@ public class InfoPanel extends PluginPanel
 
 		actionsContainer.add(buildLinkPanel(FORUMS_ICON, "Don't forget to visit the", "Intense Redemption Forums", runeLiteProperties.getForumsLink()));
 		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "discord server", runeLiteProperties.getDiscordInvite()));
+
 
 		add(versionPanel, BorderLayout.NORTH);
 		add(actionsContainer, BorderLayout.CENTER);
