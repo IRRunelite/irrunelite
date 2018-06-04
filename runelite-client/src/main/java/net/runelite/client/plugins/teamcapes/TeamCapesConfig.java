@@ -55,7 +55,7 @@ public interface TeamCapesConfig extends Config
 	)
 	default String getCustomCapeNames()
 	{
-		return "26=IR, 18=AAO, 38=APEX, 49=DOOM, 50=EOP, 37=FI, 47=FS, 30=FOE, 20=MF, 27=OB, 46=DeadBirds, 10=SF, 17=SUP";
+		return "26=IR, 18=AAO, 38=APEX, 49=DOOM, 50=EOP, 37=FI, 47=FS, 30=FOE, 20=MF, 27=OB, 46=DeadBirds, 10=SF, 17=SUP, 39=ENVY";
 	}
 
 	@ConfigItem(

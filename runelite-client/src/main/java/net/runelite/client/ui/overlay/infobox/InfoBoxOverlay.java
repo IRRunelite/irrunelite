@@ -56,7 +56,7 @@ public class InfoBoxOverlay extends Overlay
 	@Inject
 	public InfoBoxOverlay(InfoBoxManager infoboxManager, TooltipManager tooltipManager, Provider<Client> clientProvider, RuneLiteConfig config)
 	{
-		setPosition(OverlayPosition.TOP_LEFT);
+		setPosition(OverlayPosition.ABOVE_CHATBOX_RIGHT);
 		this.tooltipManager = tooltipManager;
 		this.infoboxManager = infoboxManager;
 		this.clientProvider = clientProvider;

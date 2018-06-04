@@ -43,7 +43,7 @@ public interface AttackStylesConfig extends Config
 	)
 	default boolean alwaysShowStyle()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
@@ -54,7 +54,7 @@ public interface AttackStylesConfig extends Config
 	)
 	default boolean warnForDefence()
 	{
-		return false;
+		return true;
 	}
 
 	@ConfigItem(
@@ -109,6 +109,6 @@ public interface AttackStylesConfig extends Config
 	)
 	default boolean removeWarnedStyles()
 	{
-		return false;
+		return true;
 	}
 }
