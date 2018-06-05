@@ -29,21 +29,22 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup(
-	keyName = "teamCapes",
-	name = "Team Capes",
-	description = "Configuration for the team cape plugin"
+		keyName = "teamCapes",
+		name = "Team Capes",
+		description = "Configuration for the team cape plugin"
 )
 public interface TeamCapesConfig extends Config
 {
+
 	@ConfigItem(
-		position = 0,
+    position = 0,
 		keyName = "minimumCapeCount",
-		name = "Minimum Cape Count",
-		description = "Configures the minimum number of team capes which must be present before being displayed."
+  	name = "Minimum Cape Count",
+    description = "Configures the minimum number of team capes which must be present before being displayed."
 	)
 	default int getMinimumCapeCount()
 	{
-		return 1;
+		return 5;
 	}
 
 	@ConfigItem(
@@ -54,7 +55,7 @@ public interface TeamCapesConfig extends Config
 	)
 	default String getCustomCapeNames()
 	{
-		return "";
+		return "26=IR, 18=AAO, 38=APEX, 49=DOOM, 50=EOP, 37=FI, 47=FS, 30=FOE, 20=MF, 27=OB, 46=DeadBirds, 10=SF, 17=SUP, 39=ENVY";
 	}
 
 	@ConfigItem(

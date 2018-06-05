@@ -24,143 +24,143 @@
  */
 package net.runelite.client.plugins.warindicators;
 
-		import java.awt.Color;
-		import net.runelite.client.config.Config;
-		import net.runelite.client.config.ConfigGroup;
-		import net.runelite.client.config.ConfigItem;
+import java.awt.Color;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup(
-		keyName = "warIndicators",
-		name = "War Indicators",
-		description = "Configuration for the War Indicators plugin"
+        keyName = "warIndicators",
+        name = "War Indicators",
+        description = "Configuration for the War Indicators plugin"
 )
 
 public interface WarIndicatorConfig extends Config
 {
-	@ConfigItem(
-			position = 0,
-			keyName = "highLightCallers",
-			name = "Highlight Callers",
-			description = "Highlight listed caller(s)"
-	)
-	default boolean highLightCallers()
-	{
-		return true;
-	}
+    @ConfigItem(
+            position = 0,
+            keyName = "highLightCallers",
+            name = "Highlight Callers",
+            description = "Highlight listed caller(s)"
+    )
+    default boolean highLightCallers()
+    {
+        return true;
+    }
 
-	@ConfigItem(
-			position = 1,
-			keyName = "callerColor",
-			name = "Caller(s) Color",
-			description = "Color to highlight caller's name"
-	)
-	default Color getCallerColor()
-	{
-		return new Color(36, 255, 237);
-	}
+    @ConfigItem(
+            position = 1,
+            keyName = "callerColor",
+            name = "Caller(s) Color",
+            description = "Color to highlight caller's name"
+    )
+    default Color getCallerColor()
+    {
+        return new Color(36, 255, 237);
+    }
 
-	@ConfigItem(
-			position = 2,
-			keyName = "callerMinimap",
-			name = "Callers on Minimap",
-			description = "Show your caller(s) on the minimap"
-	)
-	default boolean callerMinimap()
-	{
-		return false;
-	}
-
-
-	@ConfigItem(
-			position = 4,
-			keyName = "callerTile",
-			name = "Show Caller's Tile",
-			description = "Show the tile your target is standing on"
-	)
-	default boolean callerTile()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-			position = 5,
-			keyName = "activeCallers",
-			name = "Callers",
-			description = "Adds a user to your caller list. Format: (caller), (caller)"
-	)
-	default String getActiveCallers()
-	{
-		return "";
-	}
-
-	@ConfigItem(
-			keyName = "activeCallers",
-			name = "",
-			description = ""
-	)
-	void setActiveCallers(String key);
+    @ConfigItem(
+            position = 2,
+            keyName = "callerMinimap",
+            name = "Callers on Minimap",
+            description = "Show your caller(s) on the minimap"
+    )
+    default boolean callerMinimap()
+    {
+        return false;
+    }
 
 
-	@ConfigItem(
-			position = 6,
-			keyName = "highlightSnipes",
-			name = "Highlight Targets",
-			description = "Highlight listed target(s)"
-	)
-	default boolean highlightSnipes()
-	{
-		return true;
-	}
+    @ConfigItem(
+            position = 4,
+            keyName = "callerTile",
+            name = "Show Caller's Tile",
+            description = "Show the tile your target is standing on"
+    )
+    default boolean callerTile()
+    {
+        return false;
+    }
 
-	@ConfigItem(
-			position = 7,
-			keyName = "snipeColor",
-			name = "Target(s) Color",
-			description = "Color to highlight target name"
-	)
-	default Color getSnipeColor()
-	{
-		return new Color(255, 0, 0);
-	}
+    @ConfigItem(
+            position = 5,
+            keyName = "activeCallers",
+            name = "Callers",
+            description = "Adds a user to your caller list. Format: (caller), (caller)"
+    )
+    default String getActiveCallers()
+    {
+        return "";
+    }
 
-	@ConfigItem(
-			position = 8,
-			keyName = "snipeMinimap",
-			name = "Targets on Minimap",
-			description = "Show your target on the minimap"
-	)
-	default boolean snipeMinimap()
-	{
-		return false;
-	}
+    @ConfigItem(
+            keyName = "activeCallers",
+            name = "",
+            description = ""
+    )
+    void setActiveCallers(String key);
 
-	@ConfigItem(
-			position = 9,
-			keyName = "snipeTile",
-			name = "Show Target's Tile",
-			description = "Show the tile your target is standing on"
-	)
-	default boolean snipeTile()
-	{
-		return false;
-	}
 
-	@ConfigItem(
-			position = 10,
-			keyName = "targetedSnipes",
-			name = "Targets",
-			description = "Adds a user to your snipe list. Format: (target), (target)"
-	)
-	default String getTargetedSnipes()
-	{
-		return "";
-	}
+    @ConfigItem(
+            position = 6,
+            keyName = "highlightSnipes",
+            name = "Highlight Targets",
+            description = "Highlight listed target(s)"
+    )
+    default boolean highlightSnipes()
+    {
+        return true;
+    }
 
-	@ConfigItem(
-			keyName = "targetedSnipes",
-			name = "",
-			description = ""
-	)
+    @ConfigItem(
+            position = 7,
+            keyName = "snipeColor",
+            name = "Target(s) Color",
+            description = "Color to highlight target name"
+    )
+    default Color getSnipeColor()
+    {
+        return new Color(255, 0, 0);
+    }
 
-	void setTargetedSnipe(String key);
+    @ConfigItem(
+            position = 8,
+            keyName = "snipeMinimap",
+            name = "Targets on Minimap",
+            description = "Show your target on the minimap"
+    )
+    default boolean snipeMinimap()
+    {
+        return false;
+    }
+
+    @ConfigItem(
+            position = 9,
+            keyName = "snipeTile",
+            name = "Show Target's Tile",
+            description = "Show the tile your target is standing on"
+    )
+    default boolean snipeTile()
+    {
+        return false;
+    }
+
+    @ConfigItem(
+            position = 10,
+            keyName = "targetedSnipes",
+            name = "Targets",
+            description = "Adds a user to your snipe list. Format: (target), (target)"
+    )
+    default String getTargetedSnipes()
+    {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "targetedSnipes",
+            name = "",
+            description = ""
+    )
+
+    void setTargetedSnipe(String key);
 }

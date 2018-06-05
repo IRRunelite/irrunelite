@@ -42,6 +42,11 @@ public class PanelComponent implements LayoutableRenderableEntity
 		HORIZONTAL,
 		VERTICAL;
 	}
+	public static final int TOP_BORDER = 3;
+	public static final int LEFT_BORDER = 6;
+	public static final int RIGHT_BORDER = 6;
+	public static final int BOTTOM_BORDER = 6;
+	private static final int SEPARATOR = 2;
 
 	public static final int TOP_BORDER = 3;
 	public static final int LEFT_BORDER = 6;
@@ -70,6 +75,13 @@ public class PanelComponent implements LayoutableRenderableEntity
 
 	@Setter
 	private Point gap = new Point(0, 0);
+	@Setter
+	private int width = 140;
+
+			public int getWidth()
+	{
+			return width;
+		}
 
 	@Setter
 	private int width = 140;

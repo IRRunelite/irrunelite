@@ -37,7 +37,7 @@ import net.runelite.client.ui.overlay.components.PanelComponent;
 
 public class TeamCapesOverlay extends Overlay
 {
-	private final int MAX_CLAN_NAME_LENGTH = 10;
+	private final int MAX_CLAN_NAME_LENGTH = 35;
 	private final int MIN_PX_BETWEEN_NAME_COUNT = 4;
 
 	private final TeamCapesPlugin plugin;
@@ -68,9 +68,9 @@ public class TeamCapesOverlay extends Overlay
 		// Format w/ example (comma separated): teamcape#=TEAMNAME
 		// 26=Intense Redemption,30=FOE
 		teamNames.clear();
-		if (this.config.getCustomCapeNames().length() >= 1)
+		if (this.config.getCustomCapeNames().length() >= 3)
 		{
-			for (String teamName : this.config.getCustomCapeNames().split(", "))
+			for (String teamName : this.config.getCustomCapeNames().split(","))
 			{
 				String[] values = teamName.split("=");
 				int capeNum;
@@ -118,7 +118,7 @@ public class TeamCapesOverlay extends Overlay
 				}
 				else
 				{
-					capeName = "Team";
+					capeName = "Team ";
 				}
 				panelComponent.getChildren().add(LineComponent.builder()
 						.left(capeName + " - " + Integer.toString(team.getKey()))

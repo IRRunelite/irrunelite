@@ -30,17 +30,17 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup(
-	keyName = "playerindicators",
-	name = "Player Indicators",
-	description = "Configuration for the player indicators plugin"
+		keyName = "playerindicators",
+		name = "Player Indicators",
+		description = "Configuration for the player indicators plugin"
 )
 public interface PlayerIndicatorsConfig extends Config
 {
 	@ConfigItem(
-		position = 0,
-		keyName = "drawOwnName",
-		name = "Highlight own player",
-		description = "Configures whether or not your own player should be highlighted"
+			position = 0,
+			keyName = "drawOwnName",
+			name = "Highlight own player",
+			description = "Configures whether or not your own player should be highlighted"
 	)
 	default boolean highlightOwnPlayer()
 	{
@@ -48,10 +48,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 1,
-		keyName = "ownNameColor",
-		name = "Own player color",
-		description = "Color of your own player"
+			position = 1,
+			keyName = "ownNameColor",
+			name = "Own player color",
+			description = "Color of your own player"
 	)
 	default Color getOwnPlayerColor()
 	{
@@ -59,10 +59,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 2,
-		keyName = "drawFriendNames",
-		name = "Highlight friends",
-		description = "Configures whether or not friends should be highlighted"
+			position = 2,
+			keyName = "drawFriendNames",
+			name = "Highlight friends",
+			description = "Configures whether or not friends should be highlighted"
 	)
 	default boolean highlightFriends()
 	{
@@ -70,10 +70,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 3,
-		keyName = "friendNameColor",
-		name = "Friend color",
-		description = "Color of friend names"
+			position = 3,
+			keyName = "friendNameColor",
+			name = "Friend color",
+			description = "Color of friend names"
 	)
 	default Color getFriendColor()
 	{
@@ -81,10 +81,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 4,
-		keyName = "drawClanMemberNames",
-		name = "Highlight clan members",
-		description = "Configures whether or clan members should be highlighted"
+			position = 4,
+			keyName = "drawClanMemberNames",
+			name = "Highlight clan members",
+			description = "Configures whether or clan members should be highlighted"
 	)
 	default boolean drawClanMemberNames()
 	{
@@ -92,10 +92,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 5,
-		keyName = "clanMemberColor",
-		name = "Clan member color",
-		description = "Color of clan members"
+			position = 5,
+			keyName = "clanMemberColor",
+			name = "Clan member color",
+			description = "Color of clan members"
 	)
 	default Color getClanMemberColor()
 	{
@@ -103,10 +103,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 6,
-		keyName = "drawTeamMemberNames",
-		name = "Highlight team members",
-		description = "Configures whether or not team members should be highlighted"
+			position = 6,
+			keyName = "drawTeamMemberNames",
+			name = "Highlight team members",
+			description = "Configures whether or not team members should be highlighted"
 	)
 	default boolean highlightTeamMembers()
 	{
@@ -114,10 +114,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 7,
-		keyName = "teamMemberColor",
-		name = "Team member color",
-		description = "Color of team members"
+			position = 7,
+			keyName = "teamMemberColor",
+			name = "Team member color",
+			description = "Color of team members"
 	)
 	default Color getTeamMemberColor()
 	{
@@ -125,10 +125,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 8,
-		keyName = "drawNonClanMemberNames",
-		name = "Highlight non-clan members",
-		description = "Configures whether or not non-clan members should be highlighted"
+			position = 8,
+			keyName = "drawNonClanMemberNames",
+			name = "Highlight non-clan members",
+			description = "Configures whether or not non-clan members should be highlighted"
 	)
 	default boolean highlightNonClanMembers()
 	{
@@ -136,10 +136,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 9,
-		keyName = "nonClanMemberColor",
-		name = "Non-clan member color",
-		description = "Color of non-clan member names"
+			position = 9,
+			keyName = "nonClanMemberColor",
+			name = "Non-clan member color",
+			description = "Color of non-clan member names"
 	)
 	default Color getNonClanMemberColor()
 	{
@@ -158,10 +158,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 11,
-		keyName = "drawPlayerTiles",
-		name = "Draw tiles under players",
-		description = "Configures whether or not tiles under highlighted players should be drawn"
+			position = 11,
+			keyName = "drawPlayerTiles",
+			name = "Draw tiles under players",
+			description = "Configures whether or not tiles under highlighted players should be drawn"
 	)
 	default boolean drawTiles()
 	{
@@ -169,10 +169,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 12,
-		keyName = "drawOverheadPlayerNames",
-		name = "Draw names above players",
-		description = "Configures whether or not player names should be drawn above players"
+			position = 12,
+			keyName = "drawOverheadPlayerNames",
+			name = "Draw names above players",
+			description = "Configures whether or not player names should be drawn above players"
 	)
 	default boolean drawOverheadPlayerNames()
 	{
@@ -180,10 +180,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 13,
-		keyName = "drawMinimapNames",
-		name = "Draw names on minimap",
-		description = "Configures whether or not minimap names for players with rendered names should be drawn"
+			position = 13,
+			keyName = "drawMinimapNames",
+			name = "Draw names on minimap",
+			description = "Configures whether or not minimap names for players with rendered names should be drawn"
 	)
 	default boolean drawMinimapNames()
 	{
@@ -191,10 +191,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 14,
-		keyName = "colorPlayerMenu",
-		name = "Colorize player menu",
-		description = "Color right click menu for players"
+			position = 14,
+			keyName = "colorPlayerMenu",
+			name = "Colorize player menu",
+			description = "Color right click menu for players"
 	)
 	default boolean colorPlayerMenu()
 	{
@@ -202,10 +202,10 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 15,
-		keyName = "clanMenuIcons",
-		name = "Show clan ranks",
-		description = "Add clan rank to right click menu and next to player names"
+			position = 15,
+			keyName = "clanMenuIcons",
+			name = "Show clan ranks",
+			description = "Add clan rank to right click menu and next to player names"
 	)
 	default boolean showClanRanks()
 	{

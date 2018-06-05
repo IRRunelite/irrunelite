@@ -303,10 +303,9 @@ public enum Varbits
 	 * Multicombat area
 	 */
 	MULTICOMBAT_AREA(4605),
-
 	/**
-	 * Wilderness area
-	 */
+	 +	 * Wilderness area
+	 +	 */
 	WILDERNESS_AREA(5963),
 
 	/**

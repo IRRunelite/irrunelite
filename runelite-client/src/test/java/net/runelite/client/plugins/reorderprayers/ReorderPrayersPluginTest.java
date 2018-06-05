@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, honeyhoney <https://github.com/honeyhoney>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,38 +22,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.attackstyles;
+package net.runelite.client.plugins.reorderprayers;
 
-import net.runelite.api.Skill;
+import net.runelite.api.Prayer;
+import static net.runelite.api.Prayer.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
-public enum AttackStyle
+public class ReorderPrayersPluginTest
 {
-	ACCURATE("Attack", Skill.ATTACK),
-	AGGRESSIVE("Strength", Skill.STRENGTH),
-	DEFENSIVE("Defensive", Skill.DEFENCE),
-	CONTROLLED("Controlled", Skill.ATTACK, Skill.STRENGTH, Skill.DEFENCE),
-	RANGING("Range", Skill.RANGED),
-	LONGRANGE("Longrange", Skill.RANGED, Skill.DEFENCE),
-	CASTING("Casting", Skill.MAGIC),
-	DEFENSIVE_CASTING("Defensive Casting", Skill.MAGIC, Skill.DEFENCE),
-	OTHER("Other");
+	private static final Prayer[] PRAYER_ORDER = new Prayer[]{
+		THICK_SKIN,
+		BURST_OF_STRENGTH,
+		CLARITY_OF_THOUGHT,
+		SHARP_EYE,
+		MYSTIC_WILL,
+		ROCK_SKIN,
+		SUPERHUMAN_STRENGTH,
+		IMPROVED_REFLEXES,
+		RAPID_RESTORE,
+		RAPID_HEAL,
+		PROTECT_ITEM,
+		HAWK_EYE,
+		MYSTIC_LORE,
+		STEEL_SKIN,
+		ULTIMATE_STRENGTH,
+		INCREDIBLE_REFLEXES,
+		PROTECT_FROM_MAGIC,
+		PROTECT_FROM_MISSILES,
+		PROTECT_FROM_MELEE,
+		EAGLE_EYE,
+		MYSTIC_MIGHT,
+		RETRIBUTION,
+		REDEMPTION,
+		SMITE,
+		CHIVALRY,
+		PIETY,
+		PRESERVE,
+		RIGOUR,
+		AUGURY
+	};
 
-	private final String name;
-	private final Skill[] skills;
-
-	AttackStyle(String name, Skill... skills)
+	@Test
+	public void testPrayerOrder()
 	{
-		this.name = name;
-		this.skills = skills;
-	}
-
-	public String getName()
-	{
-		return name;
-	}
-
-	public Skill[] getSkills()
-	{
-		return skills;
+		// the reorder prayers plugin depends on the Prayer enum order
+		assertArrayEquals(Prayer.values(), PRAYER_ORDER);
 	}
 }
