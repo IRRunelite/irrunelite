@@ -73,29 +73,27 @@ public class WarIndicatorOverlay extends Overlay
         String[] callers = config.getActiveCallers().split(", ");
         String[] targets = config.getTargetedSnipes().split(", ");
 
-        if (config.callerTile() && ArrayUtils.contains(callers, actor.getName()))
-        {
-            if (poly != null)
-            {
-                OverlayUtil.renderPolygon(graphics, poly, color);
-            }
-        }
+		String name = actor.getName().replace('\u00A0', ' ');
+		int offset = actor.getLogicalHeight() + 40;
+		if (config.callerTile() && ArrayUtils.contains(callers, actor.getName()))
+		{
+			if (poly != null)
+			{
+				OverlayUtil.renderPolygon(graphics, poly, color);
+			}
+		}
 
-        if (config.snipeTile() && ArrayUtils.contains(targets, actor.getName()))
-        {
-            if (poly != null)
-            {
-                OverlayUtil.renderPolygon(graphics, poly, color);
-            }
-        }
-
-        String name = actor.getName().replace('\u00A0', ' ');
-        int offset = actor.getLogicalHeight() + 40;
-        Point textLocation = actor.getCanvasTextLocation(graphics, name, offset);
-
-        if (textLocation != null)
-        {
-            OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
-        }
-    }
+		if (config.snipeTile() && ArrayUtils.contains(targets, actor.getName()))
+		{
+			if (poly != null)
+			{
+				OverlayUtil.renderPolygon(graphics, poly, color);
+			}
+		}
+		
+		if (textLocation != null)
+		{
+			OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+		}
+	}
 }
