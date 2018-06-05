@@ -13,6 +13,7 @@ import java.awt.*;
 )
 public interface ClanChatConfig extends Config
 {
+
     @ConfigItem(
             position = 0,
             keyName = "showEnterAndLeaveMessages",

@@ -42,7 +42,8 @@ public class UpdateCheckClient
 
 	public boolean isOutdated()
 	{
-		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
+		return false;
+		/*HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
 			.addPathSegment("update-check")
 			.build();
 
@@ -63,6 +64,6 @@ public class UpdateCheckClient
 		{
 			logger.debug("Unable to update-check", ex);
 			return false;
-		}
+		}*/
 	}
 }
