@@ -24,14 +24,18 @@
  */
         package net.runelite.client.plugins.warindicators;
 
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
+import net.runelite.http.api.hiscore.HiscoreResult;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.awt.*;
 import java.util.function.BiConsumer;
 
+@Slf4j
 @Singleton
 public class WarIndicatorService
 {
@@ -48,7 +52,7 @@ public class WarIndicatorService
 
     public void forEachPlayer(final BiConsumer<Player, Color> consumer)
     {
-        if (!config.highlightSnipes() && !config.highLightCallers())
+        if (!config.highlightSnipes() && !config.highLightCallers() && !config.highlightOpponents())
         {
             return;
         }
@@ -104,5 +108,43 @@ public class WarIndicatorService
                 }
             }
         }
+
+        if (config.highlightOpponents())
+        {
+	        Actor opponent = getOpponent();
+
+	        if (opponent == null)
+	        {
+		        return;
+	        }
+
+	        if (opponent != null && opponent.getHealth() > 0)
+	        {
+		        if (opponent instanceof Player)
+		        {
+			        for (Player player : client.getPlayers()) {
+				        if (player.getName().equalsIgnoreCase(opponent.getName()))
+					        consumer.accept(player, config.getOpponentColor());
+			        }
+		        }
+	        }
+        }
     }
+
+    Actor getOpponent()
+	{
+		Player player = client.getLocalPlayer();
+		if (player == null)
+		{
+			return null;
+		}
+
+		try {
+			return player.getInteracting();
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
 }

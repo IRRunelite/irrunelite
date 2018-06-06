@@ -31,6 +31,7 @@ import java.awt.Color;
 import java.util.Collection;
 import javax.inject.Inject;
 
+import net.runelite.api.Actor;
 import org.apache.commons.lang3.ArrayUtils;
 
 import net.runelite.api.Client;
@@ -65,6 +66,9 @@ public class WarIndicatorPlugin extends Plugin
 
     @Inject
     private WarIndicatorOverlay warIndicatorOverlay;
+
+    @Inject
+    private WarIndicatorService warIndicatorService;
 
     @Inject
     private WarIndicatorMiniMapOverlay warIndicatorMinimapOverlay;
@@ -110,6 +114,7 @@ public class WarIndicatorPlugin extends Plugin
             Player player = null;
             String player2 = null;
 
+	        Actor opponent = warIndicatorService.getOpponent();
             String[] callers = config.getActiveCallers().split(", ");
             String[] targets = config.getTargetedSnipes().split(", ");
 

@@ -29,6 +29,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import net.runelite.api.Actor;
 import net.runelite.api.Player;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -65,6 +67,7 @@ public class WarIndicatorMiniMapOverlay extends Overlay
         final String name = actor.getName().replace('\u00A0', ' ');
         final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 
+	    Actor opponent = warIndicatorService.getOpponent();
         String[] callers = config.getActiveCallers().split(", ");
         String[] targets = config.getTargetedSnipes().split(", ");
 
@@ -82,6 +85,14 @@ public class WarIndicatorMiniMapOverlay extends Overlay
             {
                 OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
             }
+        }
+
+        if (config.opponentMinimap() && opponent != null)
+        {
+	        if (actor.getName().equalsIgnoreCase(opponent.getName()) && minimapLocation != null)
+	        {
+		        OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+	        }
         }
     }
 }

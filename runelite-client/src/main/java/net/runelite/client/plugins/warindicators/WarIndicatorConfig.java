@@ -163,4 +163,48 @@ public interface WarIndicatorConfig extends Config
     )
 
     void setTargetedSnipe(String key);
+
+    @ConfigItem(
+    		position = 11,
+		    keyName = "highlightOpponents",
+		    name = "Highlight Opponent",
+		    description = "Highlight the current target you are focusing"
+    )
+	default boolean highlightOpponents()
+    {
+    	return true;
+    }
+
+    @ConfigItem(
+    		position = 12,
+		    keyName = "opponentColor",
+		    name = "Opponents(s) Color",
+		    description = "Color to highlight the current target"
+    )
+    default Color getOpponentColor()
+    {
+	    return new Color(0, 123, 255);
+    }
+
+	@ConfigItem(
+			position = 13,
+			keyName = "opponentMinimap",
+			name = "Opponent on Minimap",
+			description = "Show your current target on the minimap"
+	)
+	default boolean opponentMinimap()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 14,
+			keyName = "opponentTile",
+			name = "Show Opponent's Tile",
+			description = "Show the tile your current opponent is standing on"
+	)
+	default boolean opponentTile()
+	{
+		return false;
+	}
 }

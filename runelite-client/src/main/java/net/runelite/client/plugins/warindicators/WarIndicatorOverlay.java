@@ -64,14 +64,12 @@ public class WarIndicatorOverlay extends Overlay
 
     private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
     {
-        if (!config.highlightSnipes() && !config.highLightCallers())
+        if (!config.highlightSnipes() && !config.highLightCallers() && !config.highlightOpponents())
         {
             return;
         }
 
         Polygon poly = actor.getCanvasTilePoly();
-        String[] callers = config.getActiveCallers().split(", ");
-        String[] targets = config.getTargetedSnipes().split(", ");
 
 		String name = actor.getName().replace('\u00A0', ' ');
 		int offset = actor.getLogicalHeight() + 40;

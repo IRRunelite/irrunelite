@@ -162,6 +162,10 @@ public class PlayerIndicatorsPlugin extends Plugin
 					color = config.getNonClanMemberColor();
 				}
 			}
+			else
+			{
+				color = Color.white;
+			}
 
 			if (image != -1 || color != null)
 			{
