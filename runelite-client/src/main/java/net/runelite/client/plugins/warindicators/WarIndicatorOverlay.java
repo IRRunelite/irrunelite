@@ -75,25 +75,8 @@ public class WarIndicatorOverlay extends Overlay
 
 		String name = actor.getName().replace('\u00A0', ' ');
 		int offset = actor.getLogicalHeight() + 40;
-		if (config.callerTile() && ArrayUtils.contains(callers, actor.getName()))
-		{
-			if (poly != null)
-			{
+		if (poly != null) {
 				OverlayUtil.renderPolygon(graphics, poly, color);
-			}
 		}
-
-		if (config.snipeTile() && ArrayUtils.contains(targets, actor.getName()))
-		{
-			if (poly != null)
-			{
-				OverlayUtil.renderPolygon(graphics, poly, color);
-			}
-		}
-		
-		if (textLocation != null)
-		{
-			OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
-		}
-	}
+    }
 }
