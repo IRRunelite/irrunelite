@@ -107,7 +107,7 @@ public class Library
 			b.clearBook();
 			b.getPossibleBooks().clear();
 		}
-		log.info("Library is now reset");
+		//log.info("Library is now reset");
 	}
 
 	public synchronized void mark(WorldPoint loc, Book book)
