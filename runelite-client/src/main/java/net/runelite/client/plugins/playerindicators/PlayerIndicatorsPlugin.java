@@ -53,6 +53,7 @@ import net.runelite.client.game.ClanManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.Overlay;
+import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
 		name = "Player Indicators"
@@ -114,10 +115,14 @@ public class PlayerIndicatorsPlugin extends Plugin
 			final Player localPlayer = client.getLocalPlayer();
 			Player[] players = client.getCachedPlayers();
 			Player player = null;
+			String playerName = null;
+			String[] callers = config.getActiveCallers().split(", ");
+			String[] targets = config.getTargetedSnipes().split(", ");
 
 			if (identifier >= 0 && identifier < players.length)
 			{
 				player = players[identifier];
+				playerName = players[identifier].getName();
 			}
 
 			if (player == null)
@@ -128,11 +133,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 			int image = -1;
 			Color color = null;
 
-			if (config.highlightFriends() && player.isFriend())
-			{
-				color = config.getFriendColor();
-			}
-			else if (config.drawClanMemberNames() && player.isClanMember())
+			if (config.drawClanMemberNames() && player.isClanMember())
 			{
 				color = config.getClanMemberColor();
 
@@ -159,6 +160,18 @@ public class PlayerIndicatorsPlugin extends Plugin
 				{
 					color = config.getNonClanMemberColor();
 				}
+			}
+			else if (config.highlightCallers() && ArrayUtils.contains(callers, playerName))
+			{
+				color = config.getCallerColor();
+			}
+			else if (config.highlightSnipes() && ArrayUtils.contains(targets, playerName))
+			{
+				color = config.getSnipeColor();
+			}
+			else if (config.highlightFriends() && player.isFriend())
+			{
+				color = config.getFriendColor();
 			}
 
 			if (image != -1 || color != null)

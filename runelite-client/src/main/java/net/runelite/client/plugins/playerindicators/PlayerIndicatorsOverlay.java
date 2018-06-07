@@ -31,6 +31,8 @@ import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import net.runelite.api.Actor;
 import net.runelite.api.ClanMemberRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
@@ -46,6 +48,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
 	private final ClanManager clanManager;
+	private String lastOpponent;
 
 	@Inject
 	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService,
@@ -67,13 +70,74 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
 	{
-		if (config.drawTiles())
+		if (!config.drawTiles() && !config.callerTile()
+				&& !config.snipeTile() && !config.opponentTile())
+		{
+			return;
+		}
+		else
 		{
 			Polygon poly = actor.getCanvasTilePoly();
+
 			if (poly != null)
 			{
-				OverlayUtil.renderPolygon(graphics, poly, color);
+				String[] callers = config.getActiveCallers().split(", ");
+				String[] snipes = config.getTargetedSnipes().split(", ");
+
+				if (config.callerTile() && callers != null && callers.length > 0)
+				{
+					for (int i = 0; i < callers.length; i++)
+					{
+						if (actor.getName().equalsIgnoreCase(callers[i]))
+						{
+							OverlayUtil.renderPolygon(graphics, poly, config.getCallerColor());
+						}
+					}
+				}
+				else if (config.snipeTile() && snipes != null && snipes.length > 0)
+				{
+					for (int i = 0; i < callers.length; i++)
+					{
+						if (actor.getName().equalsIgnoreCase(snipes[i]))
+						{
+							OverlayUtil.renderPolygon(graphics, poly, config.getSnipeColor());
+						}
+					}
+				}
+				else if (config.opponentTile())
+				{
+					try {
+						Actor opponent = playerIndicatorsService.getOpponent();
+
+						if (opponent == null && lastOpponent == null)
+						{
+							return;
+						}
+
+						if (opponent == null && lastOpponent != null)
+						{
+							if (actor.getName().equalsIgnoreCase(lastOpponent))
+							{
+								OverlayUtil.renderPolygon(graphics, poly, config.getOpponentColor());
+							}
+						}
+
+						if (opponent != null)
+						{
+							lastOpponent = opponent.getName();
+							if (actor.getName().equalsIgnoreCase(opponent.getName()))
+							{
+								OverlayUtil.renderPolygon(graphics, poly, config.getOpponentColor());
+							}
+						}
+					}
+					catch (Exception e)
+					{
+						return;
+					}
+				}
 			}
+
 		}
 
 		if (!config.drawOverheadPlayerNames())

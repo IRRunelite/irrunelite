@@ -28,6 +28,8 @@ import java.awt.Color;
 import java.util.function.BiConsumer;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
 import net.runelite.api.WorldType;
@@ -39,6 +41,8 @@ public class PlayerIndicatorsService {
 	private final Client client;
 	private final PlayerIndicatorsConfig config;
 
+	private String lastOpponent = null;
+
 	@Inject
 	private PlayerIndicatorsService(Client client, PlayerIndicatorsConfig config)
 	{
@@ -49,7 +53,9 @@ public class PlayerIndicatorsService {
 	public void forEachPlayer(final BiConsumer<Player, Color> consumer)
 	{
 		if (!config.highlightOwnPlayer() && !config.drawClanMemberNames()
-				&& !config.highlightFriends() && !config.highlightNonClanMembers())
+				&& !config.highlightFriends() && !config.highlightNonClanMembers()
+				&& !config.highlightCallers() && !config.highlightSnipes()
+				&& !config.highlightOpponents())
 		{
 			return;
 		}
@@ -62,6 +68,44 @@ public class PlayerIndicatorsService {
 			}
 
 			boolean isClanMember = player.isClanMember();
+
+			if (config.highlightCallers())
+			{
+				String[] callers = config.getActiveCallers().split(", ");
+				if (callers == null || callers.length < 1)
+				{
+					continue;
+				}
+				else
+				{
+					for (int i = 0; i < callers.length; i++)
+					{
+						if (player.getName().equalsIgnoreCase(callers[i]))
+						{
+							consumer.accept(player, config.getCallerColor());
+						}
+					}
+				}
+			}
+
+			if (config.highlightSnipes())
+			{
+				String[] snipes = config.getTargetedSnipes().split(", ");
+				if (snipes == null || snipes.length < 1)
+				{
+					continue;
+				}
+				else
+				{
+					for (int i = 0; i < snipes.length; i++)
+					{
+						if (player.getName().equalsIgnoreCase(snipes[i]))
+						{
+							consumer.accept(player, config.getCallerColor());
+						}
+					}
+				}
+			}
 
 			if (player == localPlayer) {
 				if (config.highlightOwnPlayer()) {
@@ -78,6 +122,41 @@ public class PlayerIndicatorsService {
 			} else if (config.highlightNonClanMembers() && !isClanMember && config.hideNAP()) {
 				if (canAttack(player.getCombatLevel())) {
 					consumer.accept(player, config.getNonClanMemberColor());
+				}
+			}
+
+			if (config.highlightOpponents())
+			{
+				try {
+					Actor opponent = getOpponent();
+
+					if (opponent == null && lastOpponent == null)
+					{
+						continue;
+					}
+
+					if (opponent != null && opponent.getHealth() > 0)
+					{
+						if (opponent instanceof Player)
+						{
+							lastOpponent = opponent.getName();
+							if (player.getName().equalsIgnoreCase(opponent.getName()))
+							{
+								consumer.accept(player, config.getOpponentColor());
+							}
+						}
+					}
+					else if (opponent == null && lastOpponent != null)
+					{
+						if (player.getName().equalsIgnoreCase(lastOpponent))
+						{
+							consumer.accept(player, config.getOpponentColor());
+						}
+					}
+				}
+				catch (Exception e)
+				{
+					continue;
 				}
 			}
 		}
@@ -128,6 +207,23 @@ public class PlayerIndicatorsService {
 		}
 
 		return false;
+	}
+
+	Actor getOpponent()
+	{
+		Player player = client.getLocalPlayer();
+		if (player == null)
+		{
+			return null;
+		}
+
+		try {
+			return player.getInteracting();
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
 	}
 
 	private boolean isWidgetVisible(Widget widget)

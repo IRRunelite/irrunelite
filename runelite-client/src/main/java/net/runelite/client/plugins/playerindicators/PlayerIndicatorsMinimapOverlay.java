@@ -29,12 +29,15 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import net.runelite.api.Actor;
 import net.runelite.api.Player;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.OverlayUtil;
+import org.apache.commons.lang3.ArrayUtils;
 
 @Singleton
 public class PlayerIndicatorsMinimapOverlay extends Overlay
@@ -63,11 +66,38 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 	{
 		final String name = actor.getName().replace('\u00A0', ' ');
 
+		Actor opponent = playerIndicatorsService.getOpponent();
+		String[] callers = config.getActiveCallers().split(", ");
+		String[] targets = config.getTargetedSnipes().split(", ");
+
+		if (!config.drawMinimapNames() && !config.callerMinimap()
+				&& !config.snipeMinimap() && !config.opponentMinimap())
+		{
+			return;
+		}
+
+		final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
+
+		if (minimapLocation == null)
+		{
+			return;
+		}
+
 		if (config.drawMinimapNames())
 		{
-			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
-
-			if (minimapLocation != null)
+			OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+		}
+		else if (config.callerMinimap() && ArrayUtils.contains(callers, actor.getName()))
+		{
+				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+		}
+		else if (config.snipeMinimap() && ArrayUtils.contains(targets, actor.getName()))
+		{
+				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+		}
+		else if (config.opponentMinimap() && opponent != null)
+		{
+			if (actor.getName().equalsIgnoreCase(opponent.getName()))
 			{
 				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
 			}

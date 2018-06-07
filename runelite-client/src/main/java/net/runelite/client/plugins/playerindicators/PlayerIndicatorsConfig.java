@@ -211,4 +211,175 @@ public interface PlayerIndicatorsConfig extends Config
 	{
 		return true;
 	}
+
+	@ConfigItem(
+			position = 16,
+			keyName = "highlightCallers",
+			name = "Highlight Callers",
+			description = "Highlight listed caller(s)"
+	)
+	default boolean highlightCallers()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 17,
+			keyName = "callerColor",
+			name = "Caller(s) Color",
+			description = "Color to highlight caller's name"
+	)
+	default Color getCallerColor()
+	{
+		return new Color(36, 255, 237);
+	}
+
+	@ConfigItem(
+			position = 18,
+			keyName = "callerMinimap",
+			name = "Callers on Minimap",
+			description = "Show your caller(s) on the minimap"
+	)
+	default boolean callerMinimap()
+	{
+		return false;
+	}
+
+
+	@ConfigItem(
+			position = 19,
+			keyName = "callerTile",
+			name = "Show Caller's Tile",
+			description = "Show the tile your target is standing on"
+	)
+	default boolean callerTile()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 20,
+			keyName = "activeCallers",
+			name = "Callers",
+			description = "Adds a user to your caller list. Format: (caller), (caller)"
+	)
+	default String getActiveCallers()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			keyName = "activeCallers",
+			name = "",
+			description = ""
+	)
+	void setActiveCallers(String key);
+
+
+	@ConfigItem(
+			position = 21,
+			keyName = "highlightSnipes",
+			name = "Highlight Targets",
+			description = "Highlight listed target(s)"
+	)
+	default boolean highlightSnipes()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 22,
+			keyName = "snipeColor",
+			name = "Target(s) Color",
+			description = "Color to highlight target name"
+	)
+	default Color getSnipeColor()
+	{
+		return new Color(255, 0, 0);
+	}
+
+	@ConfigItem(
+			position = 23,
+			keyName = "snipeMinimap",
+			name = "Targets on Minimap",
+			description = "Show your target on the minimap"
+	)
+	default boolean snipeMinimap()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 24,
+			keyName = "snipeTile",
+			name = "Show Target's Tile",
+			description = "Show the tile your target is standing on"
+	)
+	default boolean snipeTile()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 25,
+			keyName = "targetedSnipes",
+			name = "Targets",
+			description = "Adds a user to your snipe list. Format: (target), (target)"
+	)
+	default String getTargetedSnipes()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			keyName = "targetedSnipes",
+			name = "",
+			description = ""
+	)
+
+	void setTargetedSnipe(String key);
+
+	@ConfigItem(
+			position = 26,
+			keyName = "highlightOpponents",
+			name = "Highlight Opponent",
+			description = "Highlight the current target you are focusing"
+	)
+	default boolean highlightOpponents()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 27,
+			keyName = "opponentColor",
+			name = "Opponents(s) Color",
+			description = "Color to highlight the current target"
+	)
+	default Color getOpponentColor()
+	{
+		return new Color(0, 123, 255);
+	}
+
+	@ConfigItem(
+			position = 28,
+			keyName = "opponentMinimap",
+			name = "Opponent on Minimap",
+			description = "Show your current target on the minimap"
+	)
+	default boolean opponentMinimap()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 29,
+			keyName = "opponentTile",
+			name = "Show Opponent's Tile",
+			description = "Show the tile your current opponent is standing on"
+	)
+	default boolean opponentTile()
+	{
+		return false;
+	}
 }
