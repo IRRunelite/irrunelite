@@ -56,42 +56,27 @@ public class PlayerIndicatorsService {
 
 		final Player localPlayer = client.getLocalPlayer();
 
-		for (Player player : client.getPlayers())
-		{
-			if (player == null || player.getName() == null)
-			{
+		for (Player player : client.getPlayers()) {
+			if (player == null || player.getName() == null) {
 				continue;
 			}
 
 			boolean isClanMember = player.isClanMember();
 
-			if (player == localPlayer)
-			{
-				if (config.highlightOwnPlayer())
-				{
+			if (player == localPlayer) {
+				if (config.highlightOwnPlayer()) {
 					consumer.accept(player, config.getOwnPlayerColor());
 				}
-			}
-			else if (config.highlightFriends() && player.isFriend())
-			{
+			} else if (config.highlightFriends() && player.isFriend()) {
 				consumer.accept(player, config.getFriendColor());
-			}
-			else if (config.drawClanMemberNames() && isClanMember)
-			{
+			} else if (config.drawClanMemberNames() && isClanMember) {
 				consumer.accept(player, config.getClanMemberColor());
-			}
-			else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
-			{
+			} else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam()) {
 				consumer.accept(player, config.getTeamMemberColor());
-			}
-			else if (config.highlightNonClanMembers() && !isClanMember && !config.hideNAP())
-			{
+			} else if (config.highlightNonClanMembers() && !isClanMember && !config.hideNAP()) {
 				consumer.accept(player, config.getNonClanMemberColor());
-			}
-			else if (config.highlightNonClanMembers() && !isClanMember && config.hideNAP())
-			{
-				if (canAttack(player.getCombatLevel()))
-				{
+			} else if (config.highlightNonClanMembers() && !isClanMember && config.hideNAP()) {
+				if (canAttack(player.getCombatLevel())) {
 					consumer.accept(player, config.getNonClanMemberColor());
 				}
 			}

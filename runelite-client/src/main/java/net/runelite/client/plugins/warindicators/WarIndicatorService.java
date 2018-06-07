@@ -41,6 +41,7 @@ public class WarIndicatorService
 {
     private final Client client;
     private final WarIndicatorConfig config;
+	String lastOpponent = null;
 
     @Inject
     private WarIndicatorService(Client client, WarIndicatorConfig config)
@@ -113,7 +114,7 @@ public class WarIndicatorService
         {
 	        Actor opponent = getOpponent();
 
-	        if (opponent == null)
+	        if (opponent == null && lastOpponent == null)
 	        {
 		        return;
 	        }
@@ -122,9 +123,22 @@ public class WarIndicatorService
 	        {
 		        if (opponent instanceof Player)
 		        {
+		        	lastOpponent = opponent.getName();
 			        for (Player player : client.getPlayers()) {
 				        if (player.getName().equalsIgnoreCase(opponent.getName()))
+				        {
 					        consumer.accept(player, config.getOpponentColor());
+				        }
+			        }
+		        }
+	        }
+
+	        if (opponent == null && lastOpponent != null)
+	        {
+		        for (Player player : client.getPlayers()) {
+			        if (player.getName().equalsIgnoreCase(lastOpponent))
+			        {
+				        consumer.accept(player, config.getOpponentColor());
 			        }
 		        }
 	        }

@@ -113,8 +113,6 @@ public class WarIndicatorPlugin extends Plugin
             Player[] players = client.getCachedPlayers();
             Player player = null;
             String player2 = null;
-
-	        Actor opponent = warIndicatorService.getOpponent();
             String[] callers = config.getActiveCallers().split(", ");
             String[] targets = config.getTargetedSnipes().split(", ");
 

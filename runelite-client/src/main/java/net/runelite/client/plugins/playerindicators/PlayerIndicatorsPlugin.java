@@ -114,12 +114,10 @@ public class PlayerIndicatorsPlugin extends Plugin
 			final Player localPlayer = client.getLocalPlayer();
 			Player[] players = client.getCachedPlayers();
 			Player player = null;
-			String player2 = null;
 
 			if (identifier >= 0 && identifier < players.length)
 			{
 				player = players[identifier];
-				player2 = players[identifier].getName();
 			}
 
 			if (player == null)
@@ -161,10 +159,6 @@ public class PlayerIndicatorsPlugin extends Plugin
 				{
 					color = config.getNonClanMemberColor();
 				}
-			}
-			else
-			{
-				color = Color.white;
 			}
 
 			if (image != -1 || color != null)
