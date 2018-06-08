@@ -29,6 +29,7 @@ import java.util.function.BiConsumer;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import com.google.gson.Gson;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
@@ -40,6 +41,11 @@ import net.runelite.api.widgets.WidgetInfo;
 public class PlayerIndicatorsService {
 	private final Client client;
 	private final PlayerIndicatorsConfig config;
+
+	public static final Gson GSON = new Gson();
+	public String cslAPI = "http://localhost";
+	public String callerListAPI = "";
+	public String snipeListAPI = "";
 
 	private String lastOpponent = null;
 
@@ -160,6 +166,12 @@ public class PlayerIndicatorsService {
 				}
 			}
 		}
+	}
+
+	public void loadCslAPI()
+	{
+		callerListAPI = GSON.toJson(cslAPI + "/localhost/api/public/callers");
+		snipeListAPI = GSON.toJson(cslAPI + "/localhost/api/public/snipes");
 	}
 
 	public boolean canAttack(Integer target)

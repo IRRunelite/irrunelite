@@ -29,6 +29,8 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
+import javax.inject.Inject;
+
 @ConfigGroup(
 		keyName = "playerindicators",
 		name = "Player Indicators",
@@ -36,6 +38,7 @@ import net.runelite.client.config.ConfigItem;
 )
 public interface PlayerIndicatorsConfig extends Config
 {
+
 	@ConfigItem(
 			position = 0,
 			keyName = "drawOwnName",
@@ -268,13 +271,6 @@ public interface PlayerIndicatorsConfig extends Config
 		return "";
 	}
 
-	@ConfigItem(
-			keyName = "activeCallers",
-			name = "",
-			description = ""
-	)
-	void setActiveCallers(String key);
-
 
 	@ConfigItem(
 			position = 21,
@@ -330,14 +326,6 @@ public interface PlayerIndicatorsConfig extends Config
 	{
 		return "";
 	}
-
-	@ConfigItem(
-			keyName = "targetedSnipes",
-			name = "",
-			description = ""
-	)
-
-	void setTargetedSnipe(String key);
 
 	@ConfigItem(
 			position = 26,

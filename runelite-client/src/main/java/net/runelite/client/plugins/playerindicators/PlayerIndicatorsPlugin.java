@@ -90,6 +90,12 @@ public class PlayerIndicatorsPlugin extends Plugin
 		return Sets.newHashSet(playerIndicatorsOverlay, playerIndicatorsMinimapOverlay);
 	}
 
+	@Override
+	protected void startUp() throws Exception
+	{
+		service.loadCslAPI();
+	}
+
 	@Subscribe
 	public void onMenuEntryAdd(MenuEntryAdded menuEntryAdded)
 	{
