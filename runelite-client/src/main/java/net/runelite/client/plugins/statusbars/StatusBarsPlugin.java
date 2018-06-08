@@ -33,22 +33,22 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.Overlay;
 
 @PluginDescriptor(
-        name = "HP & Prayer Statusbars"
+		name = "HP & Prayer Statusbars"
 )
 public class StatusBarsPlugin extends Plugin
 {
-    @Inject
-    private StatusBarsOverlay overlay;
+	@Inject
+	private StatusBarsOverlay overlay;
 
-    @Override
-    public Overlay getOverlay()
-    {
-        return overlay;
-    }
+	@Override
+	public Overlay getOverlay()
+	{
+		return overlay;
+	}
 
-    @Provides
-    StatusBarsConfig provideConfig(ConfigManager configManager)
-    {
-        return configManager.getConfig(StatusBarsConfig.class);
-    }
+	@Provides
+	StatusBarsConfig provideConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(StatusBarsConfig.class);
+	}
 }

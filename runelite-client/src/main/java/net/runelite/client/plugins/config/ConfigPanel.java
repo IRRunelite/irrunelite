@@ -134,8 +134,7 @@ public class ConfigPanel extends PluginPanel
 	private Map<String, JPanel> children = new TreeMap<>();
 	private int scrollBarPosition = 0;
 
-	public ConfigPanel(PluginManager pluginManager, ConfigManager configManager, ScheduledExecutorService executorService,
-					   RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig)
+	public ConfigPanel(PluginManager pluginManager, ConfigManager configManager, ScheduledExecutorService executorService, RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig)
 	{
 		super();
 		this.pluginManager = pluginManager;

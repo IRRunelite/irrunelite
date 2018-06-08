@@ -38,7 +38,8 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 
 @Singleton
-public class PlayerIndicatorsService {
+public class PlayerIndicatorsService
+{
 	private final Client client;
 	private final PlayerIndicatorsConfig config;
 
@@ -68,8 +69,10 @@ public class PlayerIndicatorsService {
 
 		final Player localPlayer = client.getLocalPlayer();
 
-		for (Player player : client.getPlayers()) {
-			if (player == null || player.getName() == null) {
+		for (Player player : client.getPlayers())
+		{
+			if (player == null || player.getName() == null)
+			{
 				continue;
 			}
 
@@ -113,27 +116,41 @@ public class PlayerIndicatorsService {
 				}
 			}
 
-			if (player == localPlayer) {
-				if (config.highlightOwnPlayer()) {
+			if (player == localPlayer)
+			{
+				if (config.highlightOwnPlayer())
+				{
 					consumer.accept(player, config.getOwnPlayerColor());
 				}
-			} else if (config.highlightFriends() && player.isFriend()) {
+			}
+			else if (config.highlightFriends() && player.isFriend())
+			{
 				consumer.accept(player, config.getFriendColor());
-			} else if (config.drawClanMemberNames() && isClanMember) {
+			}
+			else if (config.drawClanMemberNames() && isClanMember)
+			{
 				consumer.accept(player, config.getClanMemberColor());
-			} else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam()) {
+			}
+			else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+			{
 				consumer.accept(player, config.getTeamMemberColor());
-			} else if (config.highlightNonClanMembers() && !isClanMember && !config.hideNAP()) {
+			}
+			else if (config.highlightNonClanMembers() && !isClanMember && !config.hideNAP())
+			{
 				consumer.accept(player, config.getNonClanMemberColor());
-			} else if (config.highlightNonClanMembers() && !isClanMember && config.hideNAP()) {
-				if (canAttack(player.getCombatLevel())) {
+			}
+			else if (config.highlightNonClanMembers() && !isClanMember && config.hideNAP())
+			{
+				if (canAttack(player.getCombatLevel()))
+				{
 					consumer.accept(player, config.getNonClanMemberColor());
 				}
 			}
 
 			if (config.highlightOpponents())
 			{
-				try {
+				try
+				{
 					Actor opponent = getOpponent();
 
 					if (opponent == null && lastOpponent == null)
@@ -194,7 +211,8 @@ public class PlayerIndicatorsService {
 			{
 				return true;
 			}
-		} else if (isWidgetVisible(client.getWidget(WidgetInfo.WILDERNESS_CONTAINER)))
+		}
+		else if (isWidgetVisible(client.getWidget(WidgetInfo.WILDERNESS_CONTAINER)))
 		{
 			int wildLvl;
 			try
@@ -229,7 +247,8 @@ public class PlayerIndicatorsService {
 			return null;
 		}
 
-		try {
+		try
+		{
 			return player.getInteracting();
 		}
 		catch (Exception e)

@@ -37,10 +37,10 @@ public interface TeamCapesConfig extends Config
 {
 
 	@ConfigItem(
-    position = 0,
+	position = 0,
 		keyName = "minimumCapeCount",
-  	name = "Minimum Cape Count",
-    description = "Configures the minimum number of team capes which must be present before being displayed."
+	name = "Minimum Cape Count",
+	description = "Configures the minimum number of team capes which must be present before being displayed."
 	)
 	default int getMinimumCapeCount()
 	{

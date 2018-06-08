@@ -34,15 +34,15 @@ import net.runelite.api.widgets.WidgetInfo;
 @AllArgsConstructor
 enum Viewport
 {
-    RESIZED_BOX(WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-            new Point(25,  16), new Point( 5,  16)),
-    RESIZED_BOTTOM(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-            new Point(61,  8), new Point(35,  8)),
-    FIXED(WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-            new Point(29, 20), new Point(9, 20));
+	RESIZED_BOX(WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
+			new Point(25,  16), new Point( 5,  16)),
+	RESIZED_BOTTOM(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
+			new Point(61,  8), new Point(35,  8)),
+	FIXED(WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
+			new Point(29, 20), new Point(9, 20));
 
-    private WidgetInfo container;
-    private WidgetInfo viewport;
-    private Point offsetLeft;
-    private Point offsetRight;
+	private WidgetInfo container;
+	private WidgetInfo viewport;
+	private Point offsetLeft;
+	private Point offsetRight;
 }

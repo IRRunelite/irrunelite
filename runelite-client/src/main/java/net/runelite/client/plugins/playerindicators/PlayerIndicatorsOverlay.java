@@ -106,7 +106,8 @@ public class PlayerIndicatorsOverlay extends Overlay
 				}
 				else if (config.opponentTile())
 				{
-					try {
+					try
+					{
 						Actor opponent = playerIndicatorsService.getOpponent();
 
 						if (opponent == null && lastOpponent == null)

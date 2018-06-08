@@ -30,31 +30,31 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup(
-        keyName = "statusbars",
-        name = "Status bars",
-        description = "Configuration for the status bars plugin"
+		keyName = "statusbars",
+		name = "Status bars",
+		description = "Configuration for the status bars plugin"
 )
 public interface StatusBarsConfig extends Config
 {
-    @ConfigItem(
-            keyName = "enableCounter",
-            name = "Show Values",
-            description = "Adds a counter at top of the bar",
-            position = 1
-    )
-    default boolean enableCounter()
-    {
-        return true;
-    }
+	@ConfigItem(
+			keyName = "enableCounter",
+			name = "Show Values",
+			description = "Adds a counter at top of the bar",
+			position = 1
+	)
+	default boolean enableCounter()
+	{
+		return true;
+	}
 
-    @ConfigItem(
-            keyName = "enableSkillIcon",
-            name = "Show Icons",
-            description = "Adds skill icons at the top of the bar",
-            position = 2
-    )
-    default boolean enableSkillIcon()
-    {
-        return true;
-    }
+	@ConfigItem(
+			keyName = "enableSkillIcon",
+			name = "Show Icons",
+			description = "Adds skill icons at the top of the bar",
+			position = 2
+	)
+	default boolean enableSkillIcon()
+	{
+		return true;
+	}
 }

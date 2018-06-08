@@ -30,31 +30,31 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup(
-        keyName = "combat",
-        name = "Combat",
-        description = "Tools related to combat"
+		keyName = "combat",
+		name = "Combat",
+		description = "Tools related to combat"
 )
 public interface CombatConfig extends Config
 {
-    @ConfigItem(
-            position = 0,
-            keyName = "combatLevel",
-            name = "Combat level decimals",
-            description = "Show combat level including decimals"
-    )
-    default boolean showCombatDecimals()
-    {
-        return true;
-    }
+	@ConfigItem(
+			position = 0,
+			keyName = "combatLevel",
+			name = "Combat level decimals",
+			description = "Show combat level including decimals"
+	)
+	default boolean showCombatDecimals()
+	{
+		return true;
+	}
 
-    @ConfigItem(
-            position = 1,
-            keyName = "combatRange",
-            name = "Wilderness combat range",
-            description = "Show the wilderness combat range in normal worlds"
-    )
-    default boolean showCombatRange()
-    {
-        return true;
-    }
+	@ConfigItem(
+			position = 1,
+			keyName = "combatRange",
+			name = "Wilderness combat range",
+			description = "Show the wilderness combat range in normal worlds"
+	)
+	default boolean showCombatRange()
+	{
+		return true;
+	}
 }
