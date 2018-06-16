@@ -85,21 +85,20 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 
 		if (config.drawMinimapNames())
 		{
-			OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
-		}
-		else if (config.callerMinimap() && ArrayUtils.contains(callers, actor.getName()))
-		{
-				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
-		}
-		else if (config.snipeMinimap() && ArrayUtils.contains(targets, actor.getName()))
-		{
-				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
-		}
-		else if (config.opponentMinimap() && opponent != null)
-		{
-			if (actor.getName().equalsIgnoreCase(opponent.getName()))
+			if (config.callerMinimap() && ArrayUtils.contains(callers, name))
 			{
 				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+			}
+			else if (config.snipeMinimap() && ArrayUtils.contains(targets, actor.getName()))
+			{
+				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+			}
+			else if (config.opponentMinimap() && opponent != null)
+			{
+				if (opponent.getName().equalsIgnoreCase(name))
+				{
+					OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+				}
 			}
 		}
 	}

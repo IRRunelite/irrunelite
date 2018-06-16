@@ -83,7 +83,7 @@ public class TeamCapesOverlay extends Overlay
 
 				catch (NumberFormatException | ArrayIndexOutOfBoundsException e)
 				{
-					continue;
+					return null;
 				}
 
 				teamNames.put(capeNum, capeName);

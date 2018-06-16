@@ -153,10 +153,6 @@ public class PlayerIndicatorsPlugin extends Plugin
 			{
 				color = config.getTeamMemberColor();
 			}
-			else if (config.highlightNonClanMembers() && !player.isClanMember())
-			{
-				color = config.getNonClanMemberColor();
-			}
 			else if (config.highlightNonClanMembers() && !player.isClanMember() && !config.hideNAP())
 			{
 				color = config.getNonClanMemberColor();
@@ -168,6 +164,10 @@ public class PlayerIndicatorsPlugin extends Plugin
 					color = config.getNonClanMemberColor();
 				}
 			}
+			else if (config.highlightFriends() && player.isFriend())
+			{
+				color = config.getFriendColor();
+			}
 			else if (config.highlightCallers() && ArrayUtils.contains(callers, playerName))
 			{
 				color = config.getCallerColor();
@@ -175,10 +175,10 @@ public class PlayerIndicatorsPlugin extends Plugin
 			else if (config.highlightSnipes() && ArrayUtils.contains(targets, playerName))
 			{
 				color = config.getSnipeColor();
-			}
-			else if (config.highlightFriends() && player.isFriend())
-			{
-				color = config.getFriendColor();
+			//}
+			//else if (config.highlightOpponents())
+			//{
+			//	color = config.getOpponentColor();
 			}
 
 			if (image != -1 || color != null)
