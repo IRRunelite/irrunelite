@@ -73,7 +73,7 @@ public class PlayerIndicatorsService
 		{
 			if (player == null || player.getName() == null)
 			{
-				continue;
+				return;
 			}
 
 			boolean isClanMember = player.isClanMember();
@@ -83,7 +83,7 @@ public class PlayerIndicatorsService
 				String[] callers = config.getActiveCallers().split(", ");
 				if (callers == null || callers.length < 1)
 				{
-					continue;
+					return;
 				}
 				else
 				{
@@ -102,7 +102,7 @@ public class PlayerIndicatorsService
 				String[] snipes = config.getTargetedSnipes().split(", ");
 				if (snipes == null || snipes.length < 1)
 				{
-					continue;
+					return;
 				}
 				else
 				{
@@ -146,8 +146,7 @@ public class PlayerIndicatorsService
 					consumer.accept(player, config.getNonClanMemberColor());
 				}
 			}
-
-			if (config.highlightOpponents())
+			else if (config.highlightOpponents())
 			{
 				try
 				{

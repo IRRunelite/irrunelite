@@ -542,6 +542,11 @@ public class ClientUI
 		eventBus.post(new ClientUILoaded());
 	}
 
+	public void hide()
+	{
+		frame.setVisible(false);
+	}
+
 	/**
 	 * Paint this component to target graphics
 	 *
